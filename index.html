@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Score Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('1088580.jpg'); /* Replace with your cricket image URL */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            width: 48%;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input {
+            padding: 8px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cricket Score Prediction</h1>
+        <form action="/predict" method="POST">
+            <div class="input-group">
+                <label for="powerPlay">Power Play (0: No, 1: Yes)</label>
+                <input type="number" name="powerPlay" id="powerPlay" required>
+            </div>
+            <div class="input-group">
+                <label for="AverageScore">Average Score</label>
+                <input type="number" step="0.01" name="AverageScore" id="AverageScore" required>
+            </div>
+            <div class="input-group">
+                <label for="delivery_left">Deliveries Left</label>
+                <input type="number" name="delivery_left" id="delivery_left" required>
+            </div>
+            <div class="input-group">
+                <label for="Score">Score</label>
+                <input type="number" name="Score" id="Score" required>
+            </div>
+            <div class="input-group">
+                <label for="CurrentRunRate">Current Run Rate</label>
+                <input type="number" step="0.01" name="CurrentRunRate" id="CurrentRunRate" required>
+            </div>
+            <div class="input-group">
+                <label for="wicketsLeft">Wickets Left</label>
+                <input type="number" name="wicketsLeft" id="wicketsLeft" required>
+            </div>
+            <div class="input-group">
+                <label for="Run_In_Last5">Runs in Last 5 Overs</label>
+                <input type="number" name="Run_In_Last5" id="Run_In_Last5" required>
+            </div>
+            <div class="input-group">
+                <label for="Wickets_In_Last5">Wickets in Last 5 Overs</label>
+                <input type="number" name="Wickets_In_Last5" id="Wickets_In_Last5" required>
+            </div>
+            <div class="input-group">
+                <label for="innings">Innings</label>
+                <input type="number" name="innings" id="innings" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
